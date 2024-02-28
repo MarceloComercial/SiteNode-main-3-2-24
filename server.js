@@ -55,8 +55,16 @@ app.set("view engine", "ejs");
 
 app.use(routes); //pede para o app usar o routes ^^
 
-app.on("Logado", () => {
-  app.listen(3000, () => {
-    console.log("Aberto em http://localhost:3000");
+// Promessa que resolverá quando o evento "Logado" for emitido
+const logadoPromise = new Promise((resolve, reject) => {
+  app.on("Logado", () => {
+      resolve(); // Resolva a promessa quando o evento "Logado" for emitido
+  });
+});
+
+// Inicie o servidor somente após o evento "Logado" ser emitido
+logadoPromise.then(() => {
+  app.listen({ host: '0.0.0.0', port: process.env.PORT ? Number(process.env.PORT) : 3333 }, () => {
+      console.log("Aberto");
   });
 });
