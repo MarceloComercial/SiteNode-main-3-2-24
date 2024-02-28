@@ -58,7 +58,7 @@ exports.middlewareGlobal = async (req, res, next) => {
     const buscarchamadosbysetor = new ObterChamadosBySetorModel();
   
     const chamadosbysetor = await buscarchamadosbysetor.getOptions(user);
-    
+    console.log("ola",user);
     
     // Formatar os dados para um único array
     if(user != ""){
@@ -76,6 +76,7 @@ exports.middlewareGlobal = async (req, res, next) => {
         setor: chamadosS.setor,
         status: chamadosS.status
       }));
+      
 
       
       res.locals.buscabysetor = chamadosFormatadosbysetor;
