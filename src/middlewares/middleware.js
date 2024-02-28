@@ -61,17 +61,25 @@ exports.middlewareGlobal = async (req, res, next) => {
     
     
     // Formatar os dados para um único array
-    const chamadosFormatadosbysetor = chamadosbysetor.map(chamadosS => ({
-      id: chamadosS._id,
-      email: chamadosS.user,
-      msg: chamadosS.mensagem,
-      data: chamadosS.diamesano,
-      setor: chamadosS.setor,
-      status: chamadosS.status
-    }));
+    if(user != ""){
+      const buscarchamadosbysetor = new ObterChamadosBySetorModel();
+  
+      const chamadosbysetor = await buscarchamadosbysetor.getOptions(user);
+      
+      
+      // Formatar os dados para um único array
+      const chamadosFormatadosbysetor = chamadosbysetor.map(chamadosS => ({
+        id: chamadosS._id,
+        email: chamadosS.user,
+        msg: chamadosS.mensagem,
+        data: chamadosS.diamesano,
+        setor: chamadosS.setor,
+        status: chamadosS.status
+      }));
 
-    
-    res.locals.buscabysetor = chamadosFormatadosbysetor;
+      
+      res.locals.buscabysetor = chamadosFormatadosbysetor;
+    }
 
    
     // Formatar os dados para um único array
