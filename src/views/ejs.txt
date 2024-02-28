@@ -1,0 +1,4 @@
+ O processo de abertura e fechamento segue o padrao do php <?php ?>  
+ O sinal de = Somente le oque vem  
+ O sinal de - executa styles etc quando vem 
+ Somento o % executa comandos .js <% if for while etc %>

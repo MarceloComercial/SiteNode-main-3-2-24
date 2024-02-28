@@ -1,0 +1,151 @@
+<%- include('includes/head'); %> <%- include('includes/nav'); %>
+
+        <main style="margin-top: 6em">
+            <div class="container pt-4">
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-sm-12 col-md-12 col-lg-10">
+                        <div class="tabela-container">
+                        <table id="example" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID <i class="fas fa-arrows-up-down"></i></th>
+                                    <th>Email <i class="fas fa-arrows-up-down"></i></th>
+                                    <th>Setor <i class="fas fa-arrows-up-down"></i></th>
+                                    <th>Atualizar <i class="fas fa-arrows-up-down"></i></th>
+                                    <th>Deletar <i class="fas fa-arrows-up-down"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% usuarios.forEach( usuarios => { %>
+                                    <tr>
+                                        <td>
+                                            <%= usuarios.id %>
+                                        </td>
+                                        <td>
+                                            <%= usuarios.email %>
+                                        </td>
+                                        <td>
+                                            <%= usuarios.setor %>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary btn-editar-user"
+                                                data-id="<%= usuarios.id %>" data-nome="<%= usuarios.email %>"
+                                                data-setor="<%= usuarios.setor %>">
+                                                Editar
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button type="button" data-id="<%= usuarios.id %>" class="btn btn-primary btn-remove-user">Remover</button>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+
+
+                        </table>
+                    </div>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modaleditgroup" tabindex="-1" aria-labelledby="modaleditgroupLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <form action="/updateUser" method="POST">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modaleditgroupLabel">
+                                <strong>Editar Usuario</strong>
+                            </h5>
+                            <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Email input -->
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                            <input type="hidden" name="_id" id="idmodel" />
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input type="text" id="namemodel" class="form-control active" name="email" required />
+                                <label class="form-label" for="form1Example1">Email</label>
+                            </div>
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <input type="text" id="namemodel" class="form-control active" name="senha" required />
+                                <label class="form-label" for="form1Example1">Senha</label>
+                            </div>
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <label class="form-label" for="form1Example1">Escolha o setor do Usuario</label>
+                                <select class="form-select" aria-label=".form-select-sm example" multiple
+                                    data-mdb-container="#exampleModal" data-mdb-filter="true" name="setor" required>
+                                    <% grupos.forEach(grupo => { %>
+                                        <option value="<%= grupo.nome %>">
+                                            <%= grupo.nome %>
+                                        </option>
+                                        <% }); %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-mdb-ripple-init
+                                data-mdb-dismiss="modal">
+                                Sair
+                            </button>
+                            <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
+                                Salvar Usuario
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal Remove-->
+        <div class="modal fade" id="modalremovegroup" tabindex="-1" aria-labelledby="modalremovegroupLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <form action="/removeUser" method="POST">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalremovegroupLabel">
+                                <strong>Atenção</strong>
+                            </h5>
+                            <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Email input -->
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                            <input type="hidden" name="_id" id="idremove" value="" />
+                            <p>Você deseja realmente Excluir esse Usuario ?</p>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-mdb-ripple-init
+                                data-mdb-dismiss="modal">
+                                Não
+                            </button>
+                            <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
+                                Sim
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script nonce="<%= nonce %>" src="assets/css/MDB5-7.1.0/js/mdb.umd.min.js"></script>
+        <script type="module" nonce="<%= nonce %>" src="assets/js/jquery-3.0.1/jquery.js"></script>
+        <script nonce="<%= nonce %>" src="assets/DataTables/jQuery-3.7.0/jquery-3.7.0.min.js"></script>
+        <script nonce="<%= nonce %>" src="assets/DataTables/JSZip-3.10.1/jszip.min.js"></script>
+
+        <script nonce="<%= nonce %>" src="assets/DataTables/DataTables-1.13.8/js/jquery.dataTables.min.js"></script>
+        <script nonce="<%= nonce %>" src="assets/DataTables/DataTables-1.13.8/js/dataTables.bootstrap5.min.js"></script>
+        <!-- <script nonce="<%= nonce %>" src="assets/DataTables/Buttons-2.4.2/js/buttons.bootstrap5.min.js"></script> -->
+        <script nonce="<%= nonce %>" src="assets/DataTables/Buttons-2.4.2/js/buttons.colVis.min.js"></script>
+        <!-- <script nonce="<%= nonce %>" src="assets/DataTables/Buttons-2.4.2/js/buttons.html5.min.js"></script> -->
+        <script nonce="<%= nonce %>" src="assets/DataTables/Buttons-2.4.2/js/buttons.print.min.js"></script>
+        <script nonce="<%= nonce %>" src="assets/DataTables/DateTime-1.5.1/js/dataTables.dateTime.min.js"></script>
+        <script nonce="<%= nonce %>" src="assets/DataTables/Buttons-2.4.2/js/dataTables.buttons.min.js"></script>
+
+        <script type="module" nonce="<%= nonce %>" src="assets/js/editusers.js"></script>

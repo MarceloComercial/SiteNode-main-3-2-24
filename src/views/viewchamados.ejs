@@ -1,0 +1,121 @@
+<%- include('includes/head'); %> <%- include('includes/nav'); %>
+
+        <main style="margin-top: 6em">
+            <div class="container pt-4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="tabela-container">
+                            <table id="example" class="table table-striped">
+                                <thead>
+                                    <tr>
+
+                                        <th>Email <i class="fas fa-arrows-up-down"></i></th>
+                                        <th>Mensagem <i class="fas fa-arrows-up-down"></i></th>
+                                        <th>Data <i class="fas fa-arrows-up-down"></i></th>
+                                        <th>Destino <i class="fas fa-arrows-up-down"></i></th>
+                                        <th>Status <i class="fas fa-arrows-up-down"></i></th>
+                                        <th>Abrir <i class="fas fa-arrows-up-down"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% buscachamados.forEach(chamados=> { %>
+                                        <tr>
+
+                                            <td>
+                                                <%= chamados.email %>
+                                            </td>
+                                            <td>
+                                                <a href="#" data-mdb-tooltip-init
+                                                    title="<%= chamados.msg %>">Mensagem</a>
+                                            </td>
+                                            <td>
+                                                <%= chamados.data %>
+                                            </td>
+                                            <td>
+                                                <%= chamados.setor %>
+                                            </td>
+                                            <td>
+                                                <%= chamados.status %>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary btn-editar-chamado"
+                                                    data-id="<%= chamados.id %>" data-email=" <%= chamados.email %>"
+                                                    data-data="<%= chamados.data %>" data-msg="<%= chamados.msg %>">
+                                                    Ver
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalviewchamado" tabindex="-1" aria-labelledby="modalviewchamadoLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <form action="/editgrupos" method="POST">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalviewchamadoLabel">
+                                <strong>Chamado</strong>
+                            </h5>
+                            <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Email input -->
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-12 col-lg-10 col-xl-8">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex flex-start align-items-center">
+                                                <div>
+                                                    <h6 class="fw-bold text-primary mb-1" id="emailmodal" value=""></h6>
+                                                    <p class="text-muted small mb-0">
+                                                        Publicado em - <span id="datamodal"></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <p class="mt-3 mb-4 pb-2" id="msgmodal"></p>
+
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-mdb-ripple-init
+                                data-mdb-dismiss="modal">
+                                Fechar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <script nonce="<%= nonce %>" src="assets/css/MDB5-7.1.0/js/mdb.umd.min.js"></script>
+        <script type="module" nonce="<%= nonce %>" src="assets/js/jquery-3.0.1/jquery.js"></script>
+        <script nonce="<%= nonce %>" src="assets/DataTables/jQuery-3.7.0/jquery-3.7.0.min.js"></script>
+        <script nonce="<%= nonce %>" src="assets/DataTables/JSZip-3.10.1/jszip.min.js"></script>
+
+        <script nonce="<%= nonce %>" src="assets/DataTables/DataTables-1.13.8/js/jquery.dataTables.min.js"></script>
+        <script nonce="<%= nonce %>" src="assets/DataTables/DataTables-1.13.8/js/dataTables.bootstrap5.min.js"></script>
+        <!-- <script nonce="<%= nonce %>" src="assets/DataTables/Buttons-2.4.2/js/buttons.bootstrap5.min.js"></script> -->
+        <script nonce="<%= nonce %>" src="assets/DataTables/Buttons-2.4.2/js/buttons.colVis.min.js"></script>
+        <!-- <script nonce="<%= nonce %>" src="assets/DataTables/Buttons-2.4.2/js/buttons.html5.min.js"></script> -->
+        <script nonce="<%= nonce %>" src="assets/DataTables/Buttons-2.4.2/js/buttons.print.min.js"></script>
+        <script nonce="<%= nonce %>" src="assets/DataTables/DateTime-1.5.1/js/dataTables.dateTime.min.js"></script>
+        <script nonce="<%= nonce %>" src="assets/DataTables/Buttons-2.4.2/js/dataTables.buttons.min.js"></script>
+
+        <script type="module" nonce="<%= nonce %>" src="assets/js/viewchamado.js"></script>

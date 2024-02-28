@@ -1,0 +1,77 @@
+<%- include('includes/head'); %><%- include('includes/nav'); %>
+
+<!--Main layout-->
+<main style="margin-top: 6em">
+  <div class="container pt-4">
+    <div class="row mx-auto text-center">
+      <div class="col-sm-3">
+        <div class="card shadow-4-strong">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i
+                class="fas fa-ticket"
+                data-mdb-tooltip-init
+                title="Chamados Abertos e não atendidos"
+              ></i>
+              Abertos
+            </h5>
+            <p class="card-text">1239</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card shadow-4-strong">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i
+                class="fas fa-spinner"
+                data-mdb-tooltip-init
+                title="Chamados Abertos e atendidos"
+              ></i>
+              Andamento
+            </h5>
+            <p class="card-text">745</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card shadow-4-strong">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i
+                class="far fa-circle-xmark"
+                data-mdb-tooltip-init
+                title="Chamados Atendidos"
+              ></i>
+              Fechado
+            </h5>
+            <p class="card-text">4076</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3" id="oi">
+        <div class="card shadow-4-strong">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i
+                class="far fa-circle-check"
+                data-mdb-tooltip-init
+                title="Chamados Concluidos"
+              ></i>
+              Concluidos
+            </h5>
+            <p class="card-text">10000</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col my-5">
+        <canvas id="meuGrafico"></canvas>
+      </div>
+    </div>
+  </div>
+</main>
+<!--Main layout-->
+
+<%- include('includes/footer'); %>
