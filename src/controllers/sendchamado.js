@@ -3,7 +3,7 @@ const { RegistrarChamado, RegisterModel } = require("../model/ChamadoRegister");
 exports.msgsend = async function (req, res) {
   try {
     const userreg = new RegistrarChamado(req.body); // Cria uma instância da classe 'Registrar' passando os dados da requisição (req.body).
-    
+    console.log(req.body.gruposetor)
     await userreg.register(); // Chama o método 'register' assíncrono da instância 'userreg'.
     
     if (userreg.erros.length > 0) {

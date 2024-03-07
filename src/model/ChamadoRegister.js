@@ -15,16 +15,7 @@ class RegistrarChamado {
     this.user = await RegisterModelChamado.create(this.body);
   }
 
-  async verify(){
-    try {
-      var setores = await GrupoModel.findOne({ Nome: this.body.gruposetor });
-      this.setoresbysort = setores.Setores; // Armazena os setores na propriedade da classe.
-      return this.setoresbysort;
-    } catch (error) {
-      console.error("Erro ao verificar grupo:", error);
-      throw error;
-    }
-  }
+  
 
   async valida() {
     if (
@@ -44,9 +35,6 @@ class RegistrarChamado {
       }
     }
 
-    // Chama verify para obter os setores
-    await this.verify();
-
     // Cria um novo objeto Date, representando a data e hora atuais
     var dataAtual = new Date();
 
@@ -62,7 +50,7 @@ class RegistrarChamado {
       user: this.body.email,
       mensagem: this.body.message,
       diamesano: dataFormatada,
-      setor: this.setoresbysort, // Usa os setores obtidos por verify.
+      setor: this.body.gruposetor, // Usa os setores obtidos por verify.
       status: "Aberto",
     };
   }
