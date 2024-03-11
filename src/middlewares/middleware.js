@@ -9,8 +9,11 @@ const ObterChamadosBySetorModel = require("../model/ObterChamadosBySetorModel");
 exports.middlewareGlobal = async (req, res, next) => {
   try {
     // Configura a variável 'user' localmente
+    
     res.locals.user = req.session.user || ""; // Define como vazio se o usuário não estiver autenticado
     const user = res.locals.user;
+    
+  
 
     // Obtém opções de setores
     const setoresModel = new GetOptionsGroupModel();
@@ -99,7 +102,7 @@ exports.middlewareGlobal = async (req, res, next) => {
       res.locals.sendbysetores = setoresUnicos;
 
       
-      // Continue usando gruposbyuserFormatados
+      // Continue usando grmatados
     } else {
       // Lide com a situação em que gruposbyuser é undefined
     }

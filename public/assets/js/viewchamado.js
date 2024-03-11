@@ -48,11 +48,28 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "GET",
       data: { id: id }, // Enviar o ID do chamado para o servidor
       success: function (respostas) {
-        
         // Iterar sobre as respostas e exibi-las na interface do usuário
         respostas.forEach(function (resposta) {
-          const respostaHTML = `<div>${resposta.nomeUsuario}: ${resposta.mensagem}</div>`;
-         
+          console.log(resposta)
+
+          const respostaHTML = `<div class="card mb-3">
+            <div class="card-body" style="background-color: #f0f2f5;">
+              <div class="d-flex flex-start">
+                <div class="w-100">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="text-primary fw-bold mb-0">
+                      ${resposta.nomeUsuario}
+                      <span class="text-dark ms-2">
+                      ${resposta.mensagem}
+                      </span>
+                    </h6>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>`;
+
           $("#respostasChamado").append(respostaHTML);
         });
       },

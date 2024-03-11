@@ -94,31 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Chame a função para criar o gráfico após um pequeno atraso
   setTimeout(criarOuAtualizarGrafico, 100);
 
-  // Adicionar eventos de clique
-  document
-    .getElementById("dashboardLink")
-    .addEventListener("click", function() {
-      carregarConteudo("dashboard");
-    });
 
-
-  // Adicionar eventos de clique
-  document
-    .getElementById("dashboardLink")
-    .addEventListener("click", function () {
-      carregarConteudo("dashboard");
-    });
-
-  document
-    .getElementById("novochamadoLink")
-    .addEventListener("click", function () {
-      carregarConteudo("novochamado");
-    });
-
-  document.getElementById("editgroup").addEventListener("click", function () {
-    
-    carregarConteudo("editgrupos");
-  });
 
   // Chamar a função para criar ou atualizar o gráfico ao carregar a página
   criarOuAtualizarGrafico();

@@ -14,7 +14,8 @@ const RegisterModelChamado = mongoose.model('Chamado', RegisterSchemaChamado); /
 
 const RespostaUsuarioSchema = new mongoose.Schema({
     chamadoId: { type: String, required: true }, // ID do chamado associado
-    nomeUsuario: { type: String, required: true }, // Nome do usuário que enviou a resposta
+    nomeUsuario: { type: String, required: true },
+    emailUsuario: { type: String, required: true },// Nome do usuário que enviou a resposta
     mensagem: { type: String, required: true }, // Mensagem ou resposta enviada pelo usuário
     createdAt: { type: Date, default: Date.now } // Data e hora de criação da resposta
 });
@@ -39,7 +40,9 @@ const Setores = mongoose.model('setores', setoresSchema);
 const RegisterSchema = new mongoose.Schema({ // Cria um esquema (Schema) para a coleção 'Register' no MongoDB.
     email  : {type:String , required: true}, // Define um campo 'email' do tipo String e obrigatório.
     password : {type:String , required: true},  // Define um campo 'password' do tipo String e obrigatório.
-    setor : {type:[String] , required: true}
+    setor : {type:[String] , required: true},
+    admin : {type:String , require:true},
+    nome : {type:String , require:true}
 });
 const RegisterModel = mongoose.model('Register', RegisterSchema); // Cria um modelo (Model) chamado 'RegisterModel' para a coleção 'Register' usando o esquema 'RegisterSchema'.
 

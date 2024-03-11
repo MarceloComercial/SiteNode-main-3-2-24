@@ -60,8 +60,9 @@ route.post('/removegroup' , removeGrupoController.remove)
  
 
 //Rota User 
-route.post('/createuser' , createuserController.register)
 route.get('/editusers' , editusercontroller.index)
+route.post('/createuser' , createuserController.register)
+
 route.post('/updateUser' , updateUsers.updateUser)
 route.post('/removeUser' , removeUsers.remove)
 

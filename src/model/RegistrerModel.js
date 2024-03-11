@@ -53,8 +53,9 @@ class Registrar {
         this.body = {
             email : this.body.email,
             password : this.body.senha, // Corrige o nome do campo 'senha' para 'password'.
-            setor: this.body.setor
-            
+            setor: this.body.setor,
+            admin : this.body.flexRadioDefault,
+            nome: this.body.nome
         };
     }
 }

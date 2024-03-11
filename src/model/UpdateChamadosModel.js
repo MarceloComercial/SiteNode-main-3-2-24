@@ -15,8 +15,9 @@ class UpdateChamado {
             // Crie um novo documento de resposta de usuário
             const novaResposta = new RegisterModelRespostaChamado({
                 chamadoId: this.body._id, // Use o ID do chamado
-                nomeUsuario: this.body.Email, // Nome do usuário
-                mensagem: this.body.resposta // Mensagem ou resposta
+                nomeUsuario: this.body.nome, // Nome do usuário nomechamado
+                mensagem: this.body.resposta, // Mensagem ou resposta
+                emailUsuario: this.body.Email
             });
 
             // Salve a nova resposta no banco de dados
@@ -37,6 +38,7 @@ class UpdateChamado {
             _id: this.body._id, // Inclua o ID do registro para identificação na atualização
             resposta: this.body.resposta,
             Email: this.body.emailchamado,
+            nome: this.body.nomechamado,
         };
     }
 }
